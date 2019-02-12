@@ -10,23 +10,14 @@
       </li>
     </ul>
 
-    <table>
-      <tr>
-        <th>boatId</th>
-        <th>boatName</th>
-        <th>picture</th>
-        <th>lengthInFeet</th>
-        <th>make</th>
-        <th>description</th>
-      </tr>
-      <tr *ngFor="let boat of boats">
-        <td>{{ boat.boatId }}</td>
-        <td>{{ boat.boatName }}</td>
-        <td>{{ boat.picture }}</td>
-        <td>{{ boat.lengthInFeet }}</td>
-        <td>{{ boat.make }}</td>
-        <td [innerHTML]="boat.description"></td>
-      </tr>
-    </table>
+    <div class="row">
+      <div class="card-columns">
+        <app-boat-card
+          *ngFor="let boat of boats"
+          [boat]="boat"
+          class= "col-sm-12 col-md-4"
+        ></app-boat-card>
+      </div>
+    </div>
   </div>
 </main>
