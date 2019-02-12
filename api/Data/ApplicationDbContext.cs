@@ -1,4 +1,5 @@
-﻿using api.ViewModels;
+﻿using api.Models;
+using api.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,10 @@ namespace api.Data
 
             #region "Seed Data"
 
+            builder.Entity<Boat>().HasData(
+                DummyData.GetBoats(this)
+            );
+
             builder.Entity<IdentityRole>().HasData(
                 new { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
                 new { Id = "2", Name = "Customer", NormalizedName = "CUSTOMER" }
@@ -27,6 +32,8 @@ namespace api.Data
 
             #endregion
         }
+
+        public DbSet<Boat> Boats { get; set; }
     }
 
 }

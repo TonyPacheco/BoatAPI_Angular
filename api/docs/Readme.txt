@@ -1,0 +1,8 @@
+Tony Pacheco - A00987817 - tonypacheco.cillis@gmail.com
+Amy Hong     - A00000000 - 
+
+WHAT WE HAVE NOT COMPLETED
+
+URL OF SITES ON AZURE
+
+ANY MAJOR CHALLENGES
