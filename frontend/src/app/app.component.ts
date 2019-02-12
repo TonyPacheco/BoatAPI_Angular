@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import users from './users';
+import boats from './boats';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  users = users;
+  boats = boats;
 }
