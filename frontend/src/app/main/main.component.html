@@ -1,5 +1,9 @@
 <main role="main" class="flex-shrink-0">
   <div class="container">
+    <quill-editor
+      [style]="{ height: '250px' }"
+    ></quill-editor>
+
     <ul>
       <li *ngFor="let user of users">
         {{ user.username }}
