@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  users: object;
+  boats: object;
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.http.get<Object>('../assets/boats.json').subscribe(res => {
+      this.boats = res;
+    });
+
+    this.http.get<Object>('../assets/users.json').subscribe(res => {
+      this.users = res;
+    });
   }
-
 }
