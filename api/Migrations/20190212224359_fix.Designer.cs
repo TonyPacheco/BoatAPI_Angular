@@ -9,8 +9,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190212212157_First")]
-    partial class First
+    [Migration("20190212224359_fix")]
+    partial class fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -137,6 +137,55 @@ namespace api.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("api.Models.Boat", b =>
+                {
+                    b.Property<int>("BoatId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BoatName");
+
+                    b.Property<string>("Description");
+
+                    b.Property<double>("LengthInFeet");
+
+                    b.Property<string>("Make");
+
+                    b.Property<string>("Picture");
+
+                    b.HasKey("BoatId");
+
+                    b.ToTable("Boats");
+
+                    b.HasData(
+                        new
+                        {
+                            BoatId = 1,
+                            BoatName = "The Mayflower",
+                            Description = "A large wooden ship",
+                            LengthInFeet = 70.5,
+                            Make = "Tallship",
+                            Picture = ""
+                        },
+                        new
+                        {
+                            BoatId = 2,
+                            BoatName = "The Bluenose",
+                            Description = "The fastest ship in North America",
+                            LengthInFeet = 30.75,
+                            Make = "Schooner",
+                            Picture = ""
+                        },
+                        new
+                        {
+                            BoatId = 3,
+                            BoatName = "The Santa Maria",
+                            Description = "A medium wooden ship",
+                            LengthInFeet = 67.0,
+                            Make = "Wideship",
+                            Picture = ""
+                        });
                 });
 
             modelBuilder.Entity("api.ViewModels.ApplicationUser", b =>

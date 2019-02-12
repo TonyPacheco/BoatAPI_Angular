@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class First : Migration
+    public partial class fix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,23 @@ namespace api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Boats",
+                columns: table => new
+                {
+                    BoatId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    BoatName = table.Column<string>(nullable: true),
+                    Picture = table.Column<string>(nullable: true),
+                    LengthInFeet = table.Column<double>(nullable: false),
+                    Make = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Boats", x => x.BoatId);
                 });
 
             migrationBuilder.CreateTable(
@@ -166,6 +183,21 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[] { "2", null, "Customer", "CUSTOMER" });
 
+            migrationBuilder.InsertData(
+                table: "Boats",
+                columns: new[] { "BoatId", "BoatName", "Description", "LengthInFeet", "Make", "Picture" },
+                values: new object[] { 1, "The Mayflower", "A large wooden ship", 70.5, "Tallship", "" });
+
+            migrationBuilder.InsertData(
+                table: "Boats",
+                columns: new[] { "BoatId", "BoatName", "Description", "LengthInFeet", "Make", "Picture" },
+                values: new object[] { 2, "The Bluenose", "The fastest ship in North America", 30.75, "Schooner", "" });
+
+            migrationBuilder.InsertData(
+                table: "Boats",
+                columns: new[] { "BoatId", "BoatName", "Description", "LengthInFeet", "Make", "Picture" },
+                values: new object[] { 3, "The Santa Maria", "A medium wooden ship", 67.0, "Wideship", "" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -220,6 +252,9 @@ namespace api.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Boats");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -14,6 +14,6 @@ namespace api.Models
         public string Picture { get; set; }
         public double LengthInFeet { get; set; }
         public string Make { get; set; }
-        public string Description { get; set} }
+        public string Description { get; set; }
     }
 }

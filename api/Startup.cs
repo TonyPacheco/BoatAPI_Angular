@@ -83,6 +83,8 @@ namespace api
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
+            //DummyData.Initialize(app);
+
         }
     }
 }

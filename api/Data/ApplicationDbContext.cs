@@ -22,7 +22,7 @@ namespace api.Data
             #region "Seed Data"
 
             builder.Entity<Boat>().HasData(
-                DummyData.GetBoats(this)
+                DummyData.GetBoats()
             );
 
             builder.Entity<IdentityRole>().HasData(
