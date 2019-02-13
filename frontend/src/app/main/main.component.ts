@@ -16,9 +16,5 @@ export class MainComponent implements OnInit {
     this.http.get<Object>('../assets/boats.json').subscribe(res => {
       this.boats = res;
     });
-
-    this.http.get<Object>('../assets/users.json').subscribe(res => {
-      this.users = res;
-    });
   }
 }
