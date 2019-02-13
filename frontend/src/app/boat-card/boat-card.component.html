@@ -1,16 +1,21 @@
 <div class="card">
   <img [src]="boat.picture" class="card-img-top" [alt]="boat.boatName" />
   <div class="card-body">
-    <h5 class="card-title">{{ boat.boatName }}</h5>
+    <p class="card-title lead">
+      {{ boat.boatName }}
+      <span class="text-muted float-right font-weight-lighter"
+        >ID: {{ boat.boatId }}</span
+      >
+    </p>
     <p class="card-text" [innerHTML]="boat.description"></p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">ID: {{ boat.boatId }}</li>
-    <li class="list-group-item">Length: {{ boat.lengthInFeet }} ft</li>
-    <li class="list-group-item">Make: {{ boat.make }}</li>
+    <li class="list-group-item">
+      {{ boat.lengthInFeet }} ft, made by {{ boat.make }}
+    </li>
+    <li class="btn-group" role="group" aria-label="Actions">
+      <button type="button" class="btn btn-primary col">Edit</button>
+      <button type="button" class="btn btn-info col">Delete</button>
+    </li>
   </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
 </div>
