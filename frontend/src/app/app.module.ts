@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'; 
-import { QuillModule } from 'ngx-quill'
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,8 @@ import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { BoatCardComponent } from './boat-card/boat-card.component';
+
+const appRoutes: Routes = [{ path: 'login', component: SignInComponent }];
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { BoatCardComponent } from './boat-card/boat-card.component';
     BoatCardComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -29,4 +33,4 @@ import { BoatCardComponent } from './boat-card/boat-card.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

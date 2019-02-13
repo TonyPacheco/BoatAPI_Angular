@@ -5,4 +5,31 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+  token: string;
+
+  setToken = (token: string): void => {
+    this.token = token;
+  };
+
+  isLoggedIn = (): boolean => {
+    if (this.token) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  validateToken = (): boolean => {
+    if (this.token) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  login = (event: any): void => {
+    event.preventDefault();
+    this.token = 'todo';
+  };
+}
