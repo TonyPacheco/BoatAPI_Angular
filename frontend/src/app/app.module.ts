@@ -14,6 +14,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 
 import { MainComponent } from './main/main.component';
 import { BoatCardComponent } from './boat-card/boat-card.component';
+import { BoatFormComponent } from './boat-form/boat-form.component';
 
 const appRoutes: Routes = [{ path: 'login', component: SignInComponent }];
 
@@ -25,7 +26,8 @@ const appRoutes: Routes = [{ path: 'login', component: SignInComponent }];
     FooterComponent,
     SignInComponent,
     BoatCardComponent,
-    SignUpComponent
+    SignUpComponent,
+    BoatFormComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
