@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  users: object;
   boats: object;
 
   constructor(private http: HttpClient) {}
