@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Alert } from '../../classes/alert';
+import { AlertType } from 'src/app/enums/alert-type.enum';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private alertService: AlertService) {
     this.createForm();
   }
 
@@ -25,7 +28,15 @@ export class RegisterComponent implements OnInit {
   }
 
   public submit(): void {
-    // TODO call authservice
-    const { firstName, lastName, email, password } = this.registerForm.value;
+    if (this.registerForm.valid) {
+      // TODO call authservice
+      const { firstName, lastName, email, password } = this.registerForm.value;
+    } else {
+      const failedRegisterAlert = new Alert(
+        'Invalid name, email, and password',
+        AlertType.Danger
+      );
+      this.alertService.alerts.next(failedRegisterAlert);
+    }
   }
 }
