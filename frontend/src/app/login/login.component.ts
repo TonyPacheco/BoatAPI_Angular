@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class SignInComponent implements OnInit {
+export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -23,7 +23,7 @@ export class SignInComponent implements OnInit {
   }
 
   public submit(): void {
-    // call authservice
+    // TODO call authservice
     const { email, password } = this.loginForm.value;
   }
 }

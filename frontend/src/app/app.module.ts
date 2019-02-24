@@ -10,15 +10,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-import { SignInComponent } from './sign-in/sign-in.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 import { MainComponent } from './components/main/main.component';
 import { BoatCardComponent } from './components/boat-card/boat-card.component';
 import { BoatFormComponent } from './components/boat-form/boat-form.component';
 import { BoatListComponent } from './components/boat-list/boat-list.component';
 
-const appRoutes: Routes = [{ path: 'login', component: SignInComponent }];
+const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
 
 @NgModule({
   declarations: [
@@ -26,9 +26,9 @@ const appRoutes: Routes = [{ path: 'login', component: SignInComponent }];
     NavbarComponent,
     MainComponent,
     FooterComponent,
-    SignInComponent,
+    LoginComponent,
     BoatCardComponent,
-    SignUpComponent,
+    RegisterComponent,
     BoatFormComponent,
     BoatListComponent
   ],
