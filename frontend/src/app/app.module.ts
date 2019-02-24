@@ -16,7 +16,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MainComponent } from './components/main/main.component';
 import { BoatCardComponent } from './components/boat-card/boat-card.component';
 import { BoatFormComponent } from './components/boat-form/boat-form.component';
-import { BoatListComponent } from './components/boat-list/boat-list.component';
+import { BoatsComponent } from './pages/boats/boats.component';
 
 const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
 
@@ -30,7 +30,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
     BoatCardComponent,
     RegisterComponent,
     BoatFormComponent,
-    BoatListComponent
+    BoatsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
