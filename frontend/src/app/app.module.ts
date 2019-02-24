@@ -5,17 +5,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 
-import { AlertService } from './services/alert.service';
-
+// modules
 import { AppRoutingModule } from './app-routing.module';
+
+// services
+import { AlertService } from './services/alert.service';
+import { AuthService } from './services/auth.service';
+
+// pages
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { BoatsComponent } from './pages/boats/boats.component';
+
+// components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-
-import { BoatsComponent } from './pages/boats/boats.component';
+// pages/*/components
 import { BoatCardComponent } from './pages/boats/components/boat-card/boat-card.component';
 
 const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
@@ -38,7 +45,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
     ReactiveFormsModule,
     QuillModule
   ],
-  providers: [AlertService],
+  providers: [AuthService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
