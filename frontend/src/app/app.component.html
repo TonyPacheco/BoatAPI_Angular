@@ -1,11 +1,14 @@
-<span *ngIf="this.isLoggedIn(); else signin">
-  <app-navbar></app-navbar>
-  <app-main></app-main>
-  <app-footer class="d-flex flex-column h-100"></app-footer>
-</span>
-
-<ng-template #signin>
-  <app-sign-in [login]="login"></app-sign-in>
-</ng-template>
+<div class="alert-wrapper">
+  <ul>
+    <li
+      *ngFor="let alert of alerts"
+      [type]="alert.type"
+      dismissOnTimeout="3000"
+      class="text-center"
+    >
+      {{ alert.text }}
+    </li>
+  </ul>
+</div>
 
 <router-outlet></router-outlet>

@@ -1,17 +1,15 @@
+<app-navbar></app-navbar>
 <main role="main" class="flex-shrink-0">
   <div class="container">
-    <quill-editor
-      [style]="{ height: '250px' }"
-    ></quill-editor>
-
     <div class="row">
       <div class="card-columns">
         <app-boat-card
           *ngFor="let boat of boats"
           [boat]="boat"
-          class= "col-sm-12 col-md-4"
+          class="col-sm-12 col-md-4"
         ></app-boat-card>
       </div>
     </div>
   </div>
 </main>
+<app-footer class="d-flex flex-column h-100"></app-footer>

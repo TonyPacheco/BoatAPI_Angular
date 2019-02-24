@@ -1,35 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { Alert } from './classes/alert';
+import { AlertService } from './services/alert.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  token: string;
+export class AppComponent implements OnInit {
+  private subscriptions: Subscription[] = [];
+  public alerts: Array<Alert> = [];
 
-  setToken = (token: string): void => {
-    this.token = token;
-  };
+  constructor(private alertService: AlertService) {}
 
-  isLoggedIn = (): boolean => {
-    if (this.token) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  validateToken = (): boolean => {
-    if (this.token) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  login = (event: any): void => {
-    event.preventDefault();
-    this.token = 'todo';
-  };
+  ngOnInit() {
+    this.subscriptions.push(
+      this.alertService.alerts.subscribe(alert => {
+        this.alerts.push(alert);
+      })
+    )
+  }
+  
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 }
