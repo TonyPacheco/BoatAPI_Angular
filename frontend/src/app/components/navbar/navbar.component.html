@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md fixed-top">
-  <a class="navbar-brand" href="#">{{ title }}</a>
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+  <span class="navbar-brand">A1</span>
   <button
     class="navbar-toggler"
     type="button"
@@ -12,7 +12,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto" *ngIf="true; else loggedOut">
+    <ul class="navbar-nav mr-auto" *ngIf="auth.currentUser else loggedOut">
       <li class="nav-item">
         <a routerLink="/boats" routerLinkActive="active" class="nav-link"
           >Boats</a
@@ -20,13 +20,13 @@
       </li>
     </ul>
     <span class="mt-2 mt-md-0">
-      <a routerLink="/login">Logout</a>
+      <a (click)="auth.logout()">Logout</a>
     </span>
   </div>
 </nav>
 
 <ng-template #loggedOut>
-  <ul class="navbar-nav mr-auto" *ngIf="true; else loggedOut">
+  <ul class="navbar-nav mr-auto">
     <li class="nav-item">
       <a routerLink="/login">Login</a>
     </li>
