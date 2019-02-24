@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
+import { AuthService } from 'src/app/services/auth.service';
 import { Alert } from '../../classes/alert';
 import { AlertType } from 'src/app/enums/alert-type.enum';
 import { AlertService } from 'src/app/services/alert.service';
@@ -9,10 +13,16 @@ import { AlertService } from 'src/app/services/alert.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   public registerForm: FormGroup;
+  private subscriptions: Subscription[] = [];
 
-  constructor(private fb: FormBuilder, private alertService: AlertService) {
+  constructor(
+    private fb: FormBuilder,
+    private alertService: AlertService,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.createForm();
   }
 
@@ -31,6 +41,16 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       // TODO call authservice
       const { firstName, lastName, email, password } = this.registerForm.value;
+
+      this.subscriptions.push(
+        this.auth
+          .register(firstName, lastName, email, password)
+          .subscribe(success => {
+            if (success) {
+              this.router.navigate(['/boats']);
+            }
+          })
+      );
     } else {
       const failedRegisterAlert = new Alert(
         'Invalid name, email, and password',
@@ -38,5 +58,9 @@ export class RegisterComponent implements OnInit {
       );
       this.alertService.alerts.next(failedRegisterAlert);
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }
