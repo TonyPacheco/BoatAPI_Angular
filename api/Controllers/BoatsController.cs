@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.Data;
 using api.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BoatsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

@@ -33,8 +33,10 @@ namespace api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddDbContext<ApplicationDbContext>(
-                option => option.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddIdentity<ApplicationUser, IdentityRole>(
                 option =>
                 {
@@ -45,7 +47,8 @@ namespace api
                     option.Password.RequireLowercase = false;
                 }
             ).AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+             .AddDefaultTokenProviders();
+
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -83,7 +86,7 @@ namespace api
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
-            //DummyData.Initialize(app);
+            DummyData.Initialize(app);
 
         }
     }

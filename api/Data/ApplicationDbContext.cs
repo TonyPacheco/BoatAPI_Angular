@@ -27,7 +27,7 @@ namespace api.Data
 
             builder.Entity<IdentityRole>().HasData(
                 new { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
-                new { Id = "2", Name = "Customer", NormalizedName = "CUSTOMER" }
+                new { Id = "2", Name = "Member", NormalizedName = "MEMBER" }
             );
 
             #endregion

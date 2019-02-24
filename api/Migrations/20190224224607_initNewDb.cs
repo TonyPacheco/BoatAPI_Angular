@@ -1,9 +1,10 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class fix : Migration
+    public partial class initNewDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,7 +56,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     BoatId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     BoatName = table.Column<string>(nullable: true),
                     Picture = table.Column<string>(nullable: true),
                     LengthInFeet = table.Column<double>(nullable: false),
@@ -72,7 +73,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -93,7 +94,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -176,27 +177,21 @@ namespace api.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "1", null, "Admin", "ADMIN" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "2", null, "Customer", "CUSTOMER" });
-
-            migrationBuilder.InsertData(
-                table: "Boats",
-                columns: new[] { "BoatId", "BoatName", "Description", "LengthInFeet", "Make", "Picture" },
-                values: new object[] { 1, "The Mayflower", "A large wooden ship", 70.5, "Tallship", "" });
+                values: new object[,]
+                {
+                    { "1", null, "Admin", "ADMIN" },
+                    { "2", null, "Customer", "CUSTOMER" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Boats",
                 columns: new[] { "BoatId", "BoatName", "Description", "LengthInFeet", "Make", "Picture" },
-                values: new object[] { 2, "The Bluenose", "The fastest ship in North America", 30.75, "Schooner", "" });
-
-            migrationBuilder.InsertData(
-                table: "Boats",
-                columns: new[] { "BoatId", "BoatName", "Description", "LengthInFeet", "Make", "Picture" },
-                values: new object[] { 3, "The Santa Maria", "A medium wooden ship", 67.0, "Wideship", "" });
+                values: new object[,]
+                {
+                    { 1, "The Mayflower", "A large wooden ship", 70.5, "Tallship", "" },
+                    { 2, "The Bluenose", "The fastest ship in North America", 30.75, "Schooner", "" },
+                    { 3, "The Santa Maria", "A medium wooden ship", 67.0, "Wideship", "" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -207,7 +202,8 @@ namespace api.Migrations
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName",
-                unique: true);
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
@@ -233,7 +229,8 @@ namespace api.Migrations
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
-                unique: true);
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
