@@ -1,11 +1,1 @@
-<span *ngIf="this.isLoggedIn(); else signin">
-  <app-navbar></app-navbar>
-  <app-main></app-main>
-  <app-footer class="d-flex flex-column h-100"></app-footer>
-</span>
-
-<ng-template #signin>
-  <app-sign-in [login]="login"></app-sign-in>
-</ng-template>
-
 <router-outlet></router-outlet>
