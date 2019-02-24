@@ -1,1 +1,14 @@
+<div class="alert-wrapper">
+  <ul>
+    <li
+      *ngFor="let alert of alerts"
+      [type]="alert.type"
+      dismissOnTimeout="3000"
+      class="text-center"
+    >
+      {{ alert.text }}
+    </li>
+  </ul>
+</div>
+
 <router-outlet></router-outlet>
