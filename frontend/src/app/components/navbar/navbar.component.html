@@ -12,7 +12,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto" *ngIf="auth.currentUser else loggedOut">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a routerLink="/boats" routerLinkActive="active" class="nav-link"
           >Boats</a
@@ -24,14 +24,3 @@
     </span>
   </div>
 </nav>
-
-<ng-template #loggedOut>
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <a routerLink="/login">Login</a>
-    </li>
-    <li class="nav-item">
-      <a routerLink="/register">Register</a>
-    </li>
-  </ul>
-</ng-template>
