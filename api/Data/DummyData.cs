@@ -36,9 +36,9 @@ namespace api.Data
                     BoatId = 1,
                     BoatName = "The Mayflower",
                     Picture = "",
-                    Make = "Tallship",
-                    Description = "A large wooden ship",
-                    LengthInFeet = 70.5
+                    Make = "Dutch Cargo Fluyt",
+                    Description = "Landed at Plymouth and got down to business.",
+                    LengthInFeet = 85
                 },
                 new Boat {
                     BoatId = 2,
@@ -46,15 +46,31 @@ namespace api.Data
                     Picture = "",
                     Make = "Schooner",
                     Description = "The fastest ship in North America",
-                    LengthInFeet = 30.75
+                    LengthInFeet = 143
                 },
                 new Boat {
                     BoatId = 3,
                     BoatName = "The Santa Maria",
                     Picture = "",
-                    Make = "Wideship",
-                    Description = "A medium wooden ship",
-                    LengthInFeet = 67
+                    Make = "Carrack",
+                    Description = "Cristobal Colon's own ship.",
+                    LengthInFeet = 62
+                },
+                new Boat {
+                    BoatId = 4,
+                    BoatName = "The Oseberg Ship",
+                    Picture = "",
+                    Make = "Karves (Longship)",
+                    Description = "An ornately decorated Viking Longship",
+                    LengthInFeet = 71
+                },
+                new Boat {
+                    BoatId = 5,
+                    BoatName = "The USS Midway",
+                    Picture = "",
+                    Make = "CV-41 Aircraft Carrier",
+                    Description = "The first carrier not able to fit through the Panama canal!",
+                    LengthInFeet = 1001
                 }
             };
         }

@@ -15,10 +15,10 @@ namespace api.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
 
-        public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public AuthController(UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
@@ -28,7 +28,7 @@ namespace api.Controllers
         [HttpPost]
         public async Task<ActionResult> InsertUser([FromBody] RegisterViewModel model)
         {
-            var user = new IdentityUser
+            var user = new ApplicationUser
             {
                 Email = model.Email,
                 UserName = model.Email,
@@ -37,7 +37,7 @@ namespace api.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Customer");
+                await _userManager.AddToRoleAsync(user, "Member");
             }
             return Ok(new { Username = user.UserName });
         }
