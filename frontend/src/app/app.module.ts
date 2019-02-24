@@ -13,7 +13,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 
-import { MainComponent } from './components/main/main.component';
 import { BoatsComponent } from './pages/boats/boats.component';
 import { BoatCardComponent } from './pages/boats/components/boat-card/boat-card.component';
 
@@ -23,7 +22,6 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
   declarations: [
     AppComponent,
     NavbarComponent,
-    MainComponent,
     FooterComponent,
     LoginComponent,
     RegisterComponent,
