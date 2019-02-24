@@ -14,9 +14,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 import { MainComponent } from './components/main/main.component';
-import { BoatCardComponent } from './components/boat-card/boat-card.component';
 import { BoatFormComponent } from './components/boat-form/boat-form.component';
 import { BoatsComponent } from './pages/boats/boats.component';
+import { BoatCardComponent } from './pages/boats/components/boat-card/boat-card.component';
 
 const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
 
@@ -27,10 +27,10 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
     MainComponent,
     FooterComponent,
     LoginComponent,
-    BoatCardComponent,
     RegisterComponent,
     BoatFormComponent,
-    BoatsComponent
+    BoatsComponent,
+    BoatCardComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
