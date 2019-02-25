@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
+import { Boat } from '../../classes/boat';
 
 @Component({
   selector: 'app-edit',
@@ -27,7 +28,14 @@ import { AuthService } from '../../services/auth.service';
 })
 export class EditComponent implements OnInit {
   public editForm: FormGroup;
-  private initialData: Object;
+  private boatData: Boat = {
+    boatId: '',
+    boatName: '',
+    description: '',
+    lengthInFeet: '',
+    make: '',
+    picture: ''
+  };
   private loggedIn: boolean;
   private id: string;
   private httpHeaders: HttpHeaders;
@@ -69,18 +77,17 @@ export class EditComponent implements OnInit {
         headers: this.httpHeaders
       })
       .subscribe(res => {
-        this.initialData = res;
-        console.log(this.initialData);
+        this.boatData = <Boat>res;
       });
   }
 
   private createForm(): void {
     this.editForm = this.fb.group({
-      boatName: ['', [Validators.required]],
-      boatPicture: ['', [Validators.required]],
-      lengthInFeet: ['', [Validators.required]],
-      make: ['', [Validators.required]],
-      description: ['', [Validators.required]]
+      boatName: [this.boatData.boatName, [Validators.required]],
+      boatPicture: [this.boatData.picture, [Validators.required]],
+      lengthInFeet: [this.boatData.lengthInFeet, [Validators.required]],
+      make: [this.boatData.make, [Validators.required]],
+      description: [this.boatData.description, [Validators.required]]
     });
   }
 

@@ -23,6 +23,7 @@
                 id="boatName"
                 formControlName="boatName"
                 placeholder="BoatName"
+                [(ngModel)]="boatData.boatName"
                 required
               />
             </div>
@@ -35,6 +36,7 @@
                 class="form-control"
                 id="boatPicture"
                 formControlName="boatPicture"
+                [(ngModel)]="boatData.picture"
                 placeholder="http://example.com/link/to/your/image.png"
                 required
               />
@@ -48,6 +50,7 @@
                 class="form-control"
                 id="lengthInFeet"
                 formControlName="lengthInFeet"
+                [(ngModel)]="boatData.lengthInFeet"
                 placeholder="Length in Feet"
                 required
               />
@@ -59,6 +62,7 @@
                 class="form-control"
                 id="make"
                 formControlName="make"
+                [(ngModel)]="boatData.make"
                 placeholder="Make"
                 required
               />
@@ -70,6 +74,7 @@
           <quill-editor
             id="description"
             formControlName="description"
+            [(ngModel)]="boatData.description"
             [style]="{ height: '250px' }"
           ></quill-editor>
         </div>
