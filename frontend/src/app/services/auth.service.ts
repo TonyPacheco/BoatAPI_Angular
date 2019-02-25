@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Alert } from '../classes/alert';
 import { AlertType } from '../enums/alert-type.enum';
@@ -12,9 +13,13 @@ import { User } from '../classes/user';
 })
 export class AuthService {
   public currentUser: Observable<User | null>;
+  public token: string;
 
-  constructor(private router: Router, private alertService: AlertService) {
-    // TODO Fetch user from the backend
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private alertService: AlertService
+  ) {
     this.currentUser = of(null);
   }
 
@@ -29,8 +34,25 @@ export class AuthService {
   }
 
   public login(email: string, password: string): Observable<boolean> {
-    // TODO Talk to backend
-    return of(true);
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    this.http
+      .post<string>(
+        'https://boatapi.azurewebsites.net/login',
+        {
+          Username: email,
+          Password: password
+        },
+        { headers: httpHeaders }
+      )
+      .subscribe(res => {
+        this.token = res;
+        return of(true);
+      });
+
+    return of(false);
   }
 
   public logout(): void {
