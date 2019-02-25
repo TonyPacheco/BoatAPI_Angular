@@ -27,7 +27,7 @@ namespace api.Controllers
 
         // GET: api/Boats
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles ="Admin, Member")]
         public async Task<ActionResult<IEnumerable<Boat>>> GetBoats()
         {
             return await _context.Boats.ToListAsync();
@@ -35,6 +35,7 @@ namespace api.Controllers
 
         // GET: api/Boats/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<ActionResult<Boat>> GetBoat(int id)
         {
             var boat = await _context.Boats.FindAsync(id);
@@ -49,6 +50,7 @@ namespace api.Controllers
 
         // PUT: api/Boats/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutBoat(int id, Boat boat)
         {
             if (id != boat.BoatId)
@@ -79,6 +81,7 @@ namespace api.Controllers
 
         // POST: api/Boats
         [HttpPost]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<ActionResult<Boat>> PostBoat(Boat boat)
         {
             _context.Boats.Add(boat);
@@ -89,6 +92,7 @@ namespace api.Controllers
 
         // DELETE: api/Boats/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Boat>> DeleteBoat(int id)
         {
             var boat = await _context.Boats.FindAsync(id);
