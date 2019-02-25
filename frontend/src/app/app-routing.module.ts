@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { BoatsComponent } from './pages/boats/boats.component';
 import { EditComponent } from './pages/edit/edit.component';
+import { CreateComponent } from './pages/create/create.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'boats', component: BoatsComponent },
   { path: 'edit/:id', component: EditComponent },
+  { path: 'create', component: CreateComponent },
   { path: '**', redirectTo: '/login' }
 ];
 
