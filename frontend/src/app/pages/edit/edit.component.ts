@@ -1,5 +1,14 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostBinding,
+  ChangeDetectorRef
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-edit',
@@ -18,8 +27,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EditComponent implements OnInit {
   public editForm: FormGroup;
+  private initialData: Object;
+  private loggedIn: boolean;
+  private id: string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private http: HttpClient,
+    private cdRef: ChangeDetectorRef,
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private route: ActivatedRoute
+  ) {
     this.createForm();
   }
 
@@ -27,6 +45,25 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
     this.footerFixer = true;
+    this.cdRef.detectChanges();
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    this.loggedIn = this.auth.loggedIn();
+
+    if (this.loggedIn) {
+      const httpHeaders = new HttpHeaders({
+        Authorization: 'Bearer ' + this.auth.getToken()
+      });
+
+      this.http
+        .get<Object>(`https://boatapi.azurewebsites.net/api/boats/${this.id}`, {
+          headers: httpHeaders
+        })
+        .subscribe(res => {
+          this.initialData = res;
+          console.log(this.initialData);
+        });
+    }
   }
 
   private createForm(): void {
