@@ -48,11 +48,9 @@ export class AuthService {
         { headers: httpHeaders }
       )
       .subscribe(res => {
-        this.token = res;
-        return of(true);
+        console.log(res);
+        return res.token;
       });
-
-    return of(false);
   }
 
   public logout(): void {
