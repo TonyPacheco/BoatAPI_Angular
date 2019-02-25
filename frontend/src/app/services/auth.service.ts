@@ -11,6 +11,7 @@ import { User } from '../classes/user';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   public currentUser: Observable<User | null>;
   public token: string;
@@ -29,11 +30,28 @@ export class AuthService {
     email: string,
     password: string
   ): Observable<boolean> {
-    // TODO Talk to backend
-    return of(true);
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    this.http
+      .post<string>(
+        'https://boatapi.azurewebsites.net/register',
+        {
+          Email: email,
+          Password: password,
+          First: firstName,
+          Last: lastName
+        },
+        { headers: httpHeaders }
+      )
+      .subscribe(res => {
+        return of(true);
+      });
+    console.log('Registration failed! :(');
+    return of(false);
   }
 
-  public login(email: string, password: string): Observable<boolean> {
+  public login(email: string, password: string) : Observable<boolean> { 
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -48,14 +66,18 @@ export class AuthService {
         { headers: httpHeaders }
       )
       .subscribe(res => {
-        console.log(res);
-        return res.token;
+        var token:string = (JSON.parse(JSON.stringify(res))).token;
+        localStorage.setItem('token', token);
+        console.log("Login Successful");
+        this.router.navigate(['/boats']);
+        return of(true);
       });
+      return of(false);
   }
 
   public logout(): void {
-    // TODO Talk to backend
     this.router.navigate(['/login']);
     this.alertService.alerts.next(new Alert('Signed out.', AlertType.Success));
+    localStorage.removeItem('token');
   }
 }
