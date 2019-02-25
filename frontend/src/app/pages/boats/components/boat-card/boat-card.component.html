@@ -14,8 +14,22 @@
       {{ boat.lengthInFeet }} ft, made by {{ boat.make }}
     </li>
     <li class="btn-group" role="group" aria-label="Actions">
-      <button type="button" class="btn btn-primary col">Edit</button>
-      <button type="button" class="btn btn-info col">Delete</button>
+      <button
+        routerLink="/edit/{{ boat.boatId }}"
+        routerLinkActive="active"
+        type="button"
+        class="btn btn-info col left-button"
+      >
+        Edit
+      </button>
+      <button
+        routerLink="/delete/{{ boat.boatId }}"
+        routerLinkActive="active"
+        type="button"
+        class="btn btn-danger col right-button"
+      >
+        Delete
+      </button>
     </li>
   </ul>
 </div>
