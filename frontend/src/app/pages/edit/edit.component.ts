@@ -1,21 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styles: [
+    `
+      :host(.footer-fixer) {
+        height: 100% !important;
+        -ms-flex-direction: column !important;
+        flex-direction: column !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+      }
+    `
+  ]
 })
 export class EditComponent implements OnInit {
   public editForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder
-  ) {
+  constructor(private fb: FormBuilder) {
     this.createForm();
   }
 
-  ngOnInit() {}
+  @HostBinding('class.footer-fixer') footerFixer: boolean = false;
+
+  ngOnInit() {
+    this.footerFixer = true;
+  }
 
   private createForm(): void {
     this.editForm = this.fb.group({
@@ -23,7 +35,7 @@ export class EditComponent implements OnInit {
       boatPicture: ['', [Validators.required]],
       lengthInFeet: ['', [Validators.required]],
       make: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      description: ['', [Validators.required]]
     });
   }
 }
