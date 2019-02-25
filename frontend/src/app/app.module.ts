@@ -28,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
 // pages/*/components
 import { BoatCardComponent } from './pages/boats/components/boat-card/boat-card.component';
+import { CreateComponent } from './pages/create/create.component';
 
 const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
 
@@ -40,7 +41,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
     RegisterComponent,
     BoatsComponent,
     BoatCardComponent,
-    EditComponent
+    EditComponent,
+    CreateComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
