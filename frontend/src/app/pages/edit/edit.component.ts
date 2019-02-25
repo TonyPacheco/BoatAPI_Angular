@@ -30,6 +30,7 @@ export class EditComponent implements OnInit {
   private initialData: Object;
   private loggedIn: boolean;
   private id: string;
+  private httpHeaders: HttpHeaders;
 
   constructor(
     private http: HttpClient,
@@ -51,19 +52,26 @@ export class EditComponent implements OnInit {
     this.loggedIn = this.auth.loggedIn();
 
     if (this.loggedIn) {
-      const httpHeaders = new HttpHeaders({
-        Authorization: 'Bearer ' + this.auth.getToken()
-      });
-
-      this.http
-        .get<Object>(`https://boatapi.azurewebsites.net/api/boats/${this.id}`, {
-          headers: httpHeaders
-        })
-        .subscribe(res => {
-          this.initialData = res;
-          console.log(this.initialData);
-        });
+      this.setHttpHeader();
+      this.loadData();
     }
+  }
+
+  setHttpHeader() {
+    this.httpHeaders = new HttpHeaders({
+      Authorization: 'Bearer ' + this.auth.getToken()
+    });
+  }
+
+  loadData() {
+    this.http
+      .get<Object>(`https://boatapi.azurewebsites.net/api/boats/${this.id}`, {
+        headers: this.httpHeaders
+      })
+      .subscribe(res => {
+        this.initialData = res;
+        console.log(this.initialData);
+      });
   }
 
   private createForm(): void {
