@@ -23,7 +23,7 @@
         Edit
       </button>
       <button
-        routerLink="/delete/{{ boat.boatId }}"
+        (click)="delete(boat.boatId)"
         routerLinkActive="active"
         type="button"
         class="btn btn-danger col right-button"
