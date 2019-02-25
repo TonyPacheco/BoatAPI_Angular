@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Alert } from './classes/alert';
 import { AlertService } from './services/alert.service';
 import { Subscription } from 'rxjs';
@@ -19,9 +19,9 @@ export class AppComponent implements OnInit {
       this.alertService.alerts.subscribe(alert => {
         this.alerts.push(alert);
       })
-    )
+    );
   }
-  
+
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }

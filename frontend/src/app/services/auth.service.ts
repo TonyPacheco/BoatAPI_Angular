@@ -12,7 +12,6 @@ import { getToken } from '@angular/router/src/utils/preactivation';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
   public currentUser: Observable<User | null>;
   public token: string;
@@ -52,7 +51,7 @@ export class AuthService {
     return of(false);
   }
 
-  public login(email: string, password: string) : Observable<boolean> { 
+  public login(email: string, password: string): Observable<boolean> {
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -67,19 +66,19 @@ export class AuthService {
         { headers: httpHeaders }
       )
       .subscribe(res => {
-        var token:string = (JSON.parse(JSON.stringify(res))).token;
+        var token: string = JSON.parse(JSON.stringify(res)).token;
         localStorage.setItem('token', token);
         //TODO: Replace the following with a return from backend
-        if(email == "a@a.a"){
+        if (email == 'a@a.a') {
           localStorage.setItem('userType', '1');
         } else {
           localStorage.setItem('userType', '2');
         }
-        console.log("Login Successful");
+        console.log('Login Successful');
         this.router.navigate(['/boats']);
         return of(true);
       });
-      return of(false);
+    return of(false);
   }
 
   public logout(): void {
@@ -100,5 +99,4 @@ export class AuthService {
     // 1 if admin - 2 if member
     return localStorage.getItem('userType');
   }
-
 }
