@@ -25,7 +25,11 @@ import { AuthService } from '../../services/auth.service';
 export class BoatsComponent implements OnInit {
   boats: object;
   loggedIn: boolean;
-  constructor(private http: HttpClient, private cdRef: ChangeDetectorRef, private auth: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private cdRef: ChangeDetectorRef,
+    private auth: AuthService
+  ) {}
 
   @HostBinding('class.footer-fixer') footerFixer: boolean = false;
 
@@ -35,14 +39,18 @@ export class BoatsComponent implements OnInit {
 
     this.loggedIn = this.auth.loggedIn();
 
-    if(this.loggedIn){
+    if (this.loggedIn) {
       const httpHeaders = new HttpHeaders({
-        'Authorization': 'Bearer ' + this.auth.getToken()
+        Authorization: 'Bearer ' + this.auth.getToken()
       });
 
-      this.http.get<Object>('https://boatapi.azurewebsites.net/api/boats', { headers: httpHeaders }).subscribe(res => {
-        this.boats = res;
-      });
+      this.http
+        .get<Object>('https://boatapi.azurewebsites.net/api/boats', {
+          headers: httpHeaders
+        })
+        .subscribe(res => {
+          this.boats = res;
+        });
     }
   }
 }
