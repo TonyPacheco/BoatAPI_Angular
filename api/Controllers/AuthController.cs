@@ -1,4 +1,5 @@
 ﻿using api.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace api.Controllers
 {
+    [EnableCors]
     public class AuthController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

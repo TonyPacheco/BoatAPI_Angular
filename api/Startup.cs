@@ -34,6 +34,8 @@ namespace api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddCors();
+
             services.AddDbContext<ApplicationDbContext>(
                 option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -86,6 +88,7 @@ namespace api
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             DummyData.Initialize(app);
 
         }

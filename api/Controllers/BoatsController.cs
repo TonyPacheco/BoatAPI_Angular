@@ -8,12 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using api.Data;
 using api.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    [EnableCors]
     public class BoatsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
