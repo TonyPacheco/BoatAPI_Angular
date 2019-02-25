@@ -38,4 +38,20 @@ export class EditComponent implements OnInit {
       description: ['', [Validators.required]]
     });
   }
+
+  public submit(): void {
+    document.getElementById('description');
+
+    // if (this.editForm.valid) {
+    console.log(this.editForm.value);
+
+    const {
+      boatName,
+      boatPicture,
+      description,
+      lengthInFeet,
+      make
+    } = this.editForm.value;
+    // }
+  }
 }

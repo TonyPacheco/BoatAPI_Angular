@@ -14,6 +14,7 @@
             type="text"
             class="form-control"
             id="boatName"
+            formControlName="boatName"
             placeholder="BoatName"
             required
           />
@@ -22,7 +23,13 @@
       <div class="form-group row">
         <label for="boatPicture" class="col-sm-2 col-form-label">Picture</label>
         <div class="col-sm-10">
-          <input type="file" class="form-control-file" id="boatPicture" required/>
+          <input
+            type="file"
+            class="form-control-file"
+            id="boatPicture"
+            formControlName="boatPicture"
+            required
+          />
         </div>
       </div>
       <div class="form-row">
@@ -32,6 +39,7 @@
             type="number"
             class="form-control"
             id="lengthInFeet"
+            formControlName="lengthInFeet"
             placeholder="Length in Feet"
             required
           />
@@ -42,6 +50,7 @@
             type="text"
             class="form-control"
             id="make"
+            formControlName="make"
             placeholder="Make"
             required
           />
@@ -50,6 +59,7 @@
       <label for="description">Description</label>
       <quill-editor
         id="description"
+        formControlName="description"
         [style]="{ height: '250px' }"
       ></quill-editor>
 
