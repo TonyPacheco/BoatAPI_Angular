@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 import { Boat } from '../../classes/boat';
@@ -45,7 +45,8 @@ export class EditComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
     private fb: FormBuilder,
     private auth: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.createForm();
   }
@@ -91,7 +92,7 @@ export class EditComponent implements OnInit {
     });
   }
 
-  public submit(): void {
+  public submit(): boolean {
     if (this.editForm.valid) {
       this.http
         .put<string>(
@@ -99,7 +100,12 @@ export class EditComponent implements OnInit {
           this.boatData,
           { headers: this.httpHeaders }
         )
-        .subscribe(res => {});
+        .subscribe(res => {
+          this.router.navigate(['/boats']);
+          return true;
+        });
+    } else {
+      return false;
     }
   }
 }
