@@ -4,7 +4,8 @@ import {
   HostBinding,
   ChangeDetectorRef
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-boats',
@@ -23,8 +24,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BoatsComponent implements OnInit {
   boats: object;
-
-  constructor(private http: HttpClient, private cdRef: ChangeDetectorRef) {}
+  loggedIn: boolean;
+  constructor(private http: HttpClient, private cdRef: ChangeDetectorRef, private auth: AuthService) {}
 
   @HostBinding('class.footer-fixer') footerFixer: boolean = false;
 
@@ -32,8 +33,16 @@ export class BoatsComponent implements OnInit {
     this.footerFixer = true;
     this.cdRef.detectChanges();
 
-    this.http.get<Object>('../assets/boats.json').subscribe(res => {
-      this.boats = res;
-    });
+    this.loggedIn = this.auth.loggedIn();
+
+    if(this.loggedIn){
+      const httpHeaders = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.auth.getToken()
+      });
+
+      this.http.get<Object>('https://boatapi.azurewebsites.net/api/boats', { headers: httpHeaders }).subscribe(res => {
+        this.boats = res;
+      });
+    }
   }
 }
