@@ -27,6 +27,7 @@ namespace api.Controllers
 
         // GET: api/Boats
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<Boat>>> GetBoats()
         {
             return await _context.Boats.ToListAsync();

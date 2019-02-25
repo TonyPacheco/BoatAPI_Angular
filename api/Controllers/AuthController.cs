@@ -38,7 +38,9 @@ namespace api.Controllers
                 LastName = model.Last,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
+
             var result = await _userManager.CreateAsync(user, model.Password);
+            
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "Member");
@@ -51,11 +53,13 @@ namespace api.Controllers
         public async Task<ActionResult> Login([FromBody] LoginViewModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
+
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var claim = new[] {
-        new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
-      };
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
+                };
+
                 var signinKey = new SymmetricSecurityKey(
                   Encoding.UTF8.GetBytes(_configuration["Jwt:SigningKey"]));
 
@@ -68,11 +72,14 @@ namespace api.Controllers
                   signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)
                 );
 
+                var userRole = await _userManager.GetRolesAsync(user);
+
                 return Ok(
                   new
                   {
                       token = new JwtSecurityTokenHandler().WriteToken(token),
-                      expiration = token.ValidTo
+                      expiration = token.ValidTo,
+                      role = userRole
                   });
             }
             return Unauthorized();
