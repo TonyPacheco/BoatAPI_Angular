@@ -15,6 +15,7 @@
     </li>
     <li class="btn-group" role="group" aria-label="Actions">
       <button
+        *ngIf="isAdmin"
         routerLink="/edit/{{ boat.boatId }}"
         routerLinkActive="active"
         type="button"
@@ -23,6 +24,7 @@
         Edit
       </button>
       <button
+        *ngIf="isAdmin"
         (click)="delete(boat.boatId)"
         routerLinkActive="active"
         type="button"

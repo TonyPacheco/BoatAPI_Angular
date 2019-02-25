@@ -12,7 +12,10 @@ export class BoatCardComponent implements OnInit {
 
   constructor(private auth: AuthService, private http: HttpClient) { }
 
+  public isAdmin: boolean = false;
+
   ngOnInit() {
+    this.isAdmin = this.auth.isAdmin();
   }
 
   public delete(id): void {
@@ -22,8 +25,6 @@ export class BoatCardComponent implements OnInit {
 
     this.http.delete<Object>('https://boatapi.azurewebsites.net/api/boats/' + id, { headers: httpHeaders }).subscribe(res => {
       location.reload();
-    });
-    
+    }); 
   }
-
 }

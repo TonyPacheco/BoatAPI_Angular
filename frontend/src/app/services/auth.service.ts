@@ -66,15 +66,12 @@ export class AuthService {
         { headers: httpHeaders }
       )
       .subscribe(res => {
-        var token: string = JSON.parse(JSON.stringify(res)).token;
+        var jsonRes = JSON.parse(JSON.stringify(res));
+        console.log(res);
+        var token: string = jsonRes.token;
+        var role : string = jsonRes.role[0];
         localStorage.setItem('token', token);
-        //TODO: Replace the following with a return from backend
-        if (email == 'a@a.a') {
-          localStorage.setItem('userType', '1');
-        } else {
-          localStorage.setItem('userType', '2');
-        }
-        console.log('Login Successful');
+        localStorage.setItem('userType', role);
         this.router.navigate(['/boats']);
         return of(true);
       });
@@ -83,6 +80,7 @@ export class AuthService {
 
   public logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('userType');
     this.router.navigate(['/login']);
     this.alertService.alerts.next(new Alert('Signed out.', AlertType.Success));
   }
@@ -95,8 +93,8 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  public isAdmin(): string {
+  public isAdmin(): boolean {
     // 1 if admin - 2 if member
-    return localStorage.getItem('userType');
+    return localStorage.getItem('userType') == "Admin";
   }
 }
