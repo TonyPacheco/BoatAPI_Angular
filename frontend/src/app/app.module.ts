@@ -19,6 +19,7 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { BoatsComponent } from './pages/boats/boats.component';
+import { EditComponent } from './pages/edit/edit.component';
 
 // components
 import { AppComponent } from './app.component';
@@ -38,7 +39,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
     LoginComponent,
     RegisterComponent,
     BoatsComponent,
-    BoatCardComponent
+    BoatCardComponent,
+    EditComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

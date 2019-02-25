@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+    <form
+      [formGroup]="editForm"
+      (submit)="submit()"
+      novalidate
+      accept-charset="UTF-8"
+    >
+      <div class="form-group row">
+        <label for="boatName" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="boatName"
+            placeholder="BoatName"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="boatPicture" class="col-sm-2 col-form-label">Picture</label>
+        <div class="col-sm-10">
+          <input type="file" class="form-control-file" id="boatPicture" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="lengthInFeet">Length in Feet</label>
+          <input
+            type="number"
+            class="form-control"
+            id="lengthInFeet"
+            placeholder="Length in Feet"
+            required
+          />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="make">Make</label>
+          <input
+            type="text"
+            class="form-control"
+            id="make"
+            placeholder="Make"
+            required
+          />
+        </div>
+      </div>
+      <label for="description">Description</label>
+      <quill-editor
+        id="description"
+        [style]="{ height: '250px' }"
+      ></quill-editor>
+
+      <button type="submit" class="btn btn-lg btn-primary btn-block mt-3">
+        Submit
+      </button>
+    </form>
+  </div>
+</main>
+<app-footer class="d-flex flex-column h-100"></app-footer>
