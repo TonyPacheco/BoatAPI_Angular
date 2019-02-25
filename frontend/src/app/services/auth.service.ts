@@ -7,6 +7,7 @@ import { Alert } from '../classes/alert';
 import { AlertType } from '../enums/alert-type.enum';
 import { AlertService } from '../services/alert.service';
 import { User } from '../classes/user';
+import { getToken } from '@angular/router/src/utils/preactivation';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,12 @@ export class AuthService {
       .subscribe(res => {
         var token:string = (JSON.parse(JSON.stringify(res))).token;
         localStorage.setItem('token', token);
+        //TODO: Replace the following with a return from backend
+        if(email == "a@a.a"){
+          localStorage.setItem('userType', '1');
+        } else {
+          localStorage.setItem('userType', '2');
+        }
         console.log("Login Successful");
         this.router.navigate(['/boats']);
         return of(true);
@@ -76,8 +83,22 @@ export class AuthService {
   }
 
   public logout(): void {
+    localStorage.removeItem('token');
     this.router.navigate(['/login']);
     this.alertService.alerts.next(new Alert('Signed out.', AlertType.Success));
-    localStorage.removeItem('token');
   }
+
+  public loggedIn(): boolean {
+    return this.getToken() != null;
+  }
+
+  public getToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  public isAdmin(): string {
+    // 1 if admin - 2 if member
+    return localStorage.getItem('userType');
+  }
+
 }
