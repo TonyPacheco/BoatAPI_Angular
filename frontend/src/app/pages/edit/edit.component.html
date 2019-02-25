@@ -1,72 +1,87 @@
 <app-navbar></app-navbar>
 <main role="main" class="flex-shrink-0">
   <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="display-4">Edit</h1>
+      </div>
+    </div>
     <form
       [formGroup]="editForm"
       (submit)="submit()"
       novalidate
       accept-charset="UTF-8"
     >
-      <div class="form-group row">
-        <label for="boatName" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            id="boatName"
-            formControlName="boatName"
-            placeholder="BoatName"
-            required
-          />
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-row">
+            <div class="col-12 mb-3">
+              <label for="boatName">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="boatName"
+                formControlName="boatName"
+                placeholder="BoatName"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12 mb-3">
+              <label for="boatPicture">Picture</label>
+              <input
+                type="text"
+                class="form-control"
+                id="boatPicture"
+                formControlName="boatPicture"
+                placeholder="http://example.com/link/to/your/image.png"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="lengthInFeet">Length in Feet</label>
+              <input
+                type="number"
+                class="form-control"
+                id="lengthInFeet"
+                formControlName="lengthInFeet"
+                placeholder="Length in Feet"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="make">Make</label>
+              <input
+                type="text"
+                class="form-control"
+                id="make"
+                formControlName="make"
+                placeholder="Make"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="description">Description</label>
+          <quill-editor
+            id="description"
+            formControlName="description"
+            [style]="{ height: '250px' }"
+          ></quill-editor>
         </div>
       </div>
-      <div class="form-group row">
-        <label for="boatPicture" class="col-sm-2 col-form-label">Picture</label>
-        <div class="col-sm-10">
-          <input
-            type="file"
-            class="form-control-file"
-            id="boatPicture"
-            formControlName="boatPicture"
-            required
-          />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md-6 mb-3">
-          <label for="lengthInFeet">Length in Feet</label>
-          <input
-            type="number"
-            class="form-control"
-            id="lengthInFeet"
-            formControlName="lengthInFeet"
-            placeholder="Length in Feet"
-            required
-          />
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="make">Make</label>
-          <input
-            type="text"
-            class="form-control"
-            id="make"
-            formControlName="make"
-            placeholder="Make"
-            required
-          />
-        </div>
-      </div>
-      <label for="description">Description</label>
-      <quill-editor
-        id="description"
-        formControlName="description"
-        [style]="{ height: '250px' }"
-      ></quill-editor>
-
-      <button type="submit" class="btn btn-lg btn-primary btn-block mt-3">
+      <hr />
+      <button type="submit" class="btn btn-primary col-12 mt-3">
         Submit
       </button>
     </form>
+    <a class="btn btn-link col-12 mt-2 Çmb-3">
+      Back to List
+    </a>
   </div>
 </main>
 <app-footer class="d-flex flex-column h-100"></app-footer>
