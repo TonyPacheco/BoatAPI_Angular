@@ -92,18 +92,14 @@ export class EditComponent implements OnInit {
   }
 
   public submit(): void {
-    document.getElementById('description');
-
-    // if (this.editForm.valid) {
-    console.log(this.editForm.value);
-
-    const {
-      boatName,
-      boatPicture,
-      description,
-      lengthInFeet,
-      make
-    } = this.editForm.value;
-    // }
+    if (this.editForm.valid) {
+      this.http
+        .put<string>(
+          `https://boatapi.azurewebsites.net/api/boats/${this.id}`,
+          this.boatData,
+          { headers: this.httpHeaders }
+        )
+        .subscribe(res => {});
+    }
   }
 }
