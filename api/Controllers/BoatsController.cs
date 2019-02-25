@@ -15,7 +15,7 @@ namespace api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    [EnableCors]
+    //[EnableCors("CORS")]
     public class BoatsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
