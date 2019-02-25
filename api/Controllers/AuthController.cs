@@ -34,6 +34,8 @@ namespace api.Controllers
             {
                 Email = model.Email,
                 UserName = model.Email,
+                FirstName = model.First,
+                LastName = model.Last
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(user, model.Password);
