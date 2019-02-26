@@ -41,7 +41,7 @@ namespace api
                        .AllowAnyMethod()
                        .AllowAnyHeader()
                        .AllowCredentials()
-                       .SetPreflightMaxAge(new TimeSpan(5000));
+                       .SetPreflightMaxAge(new TimeSpan(50000000000));
             }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
