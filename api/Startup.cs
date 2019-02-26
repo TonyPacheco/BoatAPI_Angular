@@ -38,8 +38,9 @@ namespace api
             services.AddCors(o => o.AddPolicy("CORS", builder => {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
-                       .AllowCredentials()
-                       .AllowAnyHeader();
+                       .AllowAnyHeader()
+                       .WithHeaders("Authorization")
+                       .AllowCredentials();
             }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
