@@ -38,6 +38,7 @@ namespace api
             services.AddCors(o => o.AddPolicy("CORS", builder => {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
+                       .AllowCredentials()
                        .AllowAnyHeader();
             }));
 
