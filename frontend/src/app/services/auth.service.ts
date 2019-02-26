@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Alert } from '../classes/alert';
-import { AlertType } from '../enums/alert-type.enum';
-import { AlertService } from '../services/alert.service';
-import { User } from '../classes/user';
+import { Alert } from 'src/app/classes/alert';
+import { AlertType } from 'src/app/enums/alert-type.enum';
+import { AlertService } from 'src/app/services/alert.service';
+import { User } from 'src/app/classes/user';
 
 @Injectable({
   providedIn: 'root'

@@ -4,14 +4,13 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/services/auth.service';
-import { Alert } from '../../classes/alert';
+import { Alert } from 'src/app/classes/alert';
 import { AlertType } from 'src/app/enums/alert-type.enum';
 import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   public registerForm: FormGroup;

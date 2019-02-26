@@ -8,8 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AuthService } from '../../services/auth.service';
-import { Boat } from '../../classes/boat';
+import { AuthService } from 'src/app/services/auth.service';
+import { Boat } from 'src/app/classes/boat';
 
 @Component({
   selector: 'app-edit',

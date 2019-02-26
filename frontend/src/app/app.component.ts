@@ -5,8 +5,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
@@ -22,9 +21,6 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       })
     );
-
-    // console.log(this.alerts)
-    // console.log(this.subscriptions)
   }
 
   ngOnDestroy() {
