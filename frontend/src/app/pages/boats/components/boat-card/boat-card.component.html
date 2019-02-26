@@ -1,0 +1,34 @@
+<div class="card">
+  <img [src]="boat.picture" class="card-img-top" [alt]="boat.boatName" />
+  <div class="card-body">
+    <p class="card-title lead">
+      {{ boat.boatName }}
+      <span class="text-muted float-right font-weight-lighter"
+        >ID: {{ boat.boatId }}</span
+      >
+    </p>
+    <p class="card-text" [innerHTML]="boat.description"></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ boat.lengthInFeet }} ft {{ boat.make }}</li>
+    <li *ngIf="isAdmin" class="btn-group" role="group" aria-label="Actions">
+      <button
+        routerLink="/edit/{{ boat.boatId }}"
+        routerLinkActive="active"
+        type="button"
+        class="btn btn-dark col left-button"
+      >
+        Edit
+      </button>
+      <button
+        (click)="delete(boat.boatId)"
+        routerLink="/boats"
+        routerLinkActive="active"
+        type="button"
+        class="btn btn-danger col right-button"
+      >
+        Delete
+      </button>
+    </li>
+  </ul>
+</div>

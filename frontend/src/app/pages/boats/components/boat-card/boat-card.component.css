@@ -1,0 +1,9 @@
+.btn-group > .btn:not(:first-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: calc(0.25rem - 1px);
+}
+
+.btn-group > .btn:first-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: calc(0.25rem - 1px);
+}

@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+  <span class="navbar-brand">
+    <a routerLink="/boats" routerLinkActive="active">A1</a>
+  </span>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarCollapse"
+    aria-controls="navbarCollapse"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li *ngIf="loggedIn === true" class="nav-item">
+        <a routerLink="/boats" routerLinkActive="active" class="nav-link"
+          >Boats</a
+        >
+      </li>
+      <li *ngIf="isAdmin" class="nav-item">
+        <a routerLink="/create" routerLinkActive="active" class="nav-link"
+          >Create New Boat</a
+        >
+      </li>
+    </ul>
+    <span class="mt-2 mt-md-0" *ngIf="loggedIn === true">
+      <a (click)="logout()">Logout</a>
+    </span>
+    <span class="mt-2 mt-md-0" *ngIf="loggedIn === false">
+      <a routerLink="/login" class="nav-link pl-0">Login</a>
+    </span>
+  </div>
+</nav>
