@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Alert } from './classes/alert';
 import { AlertService } from './services/alert.service';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public alerts: Array<Alert> = [];
 
@@ -17,9 +17,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.subscriptions.push(
       this.alertService.alerts.subscribe(alert => {
-        this.alerts.push(alert);
+        if (alert != undefined) {
+          this.alerts.push(alert);
+        }
       })
     );
+
+    // console.log(this.alerts)
+    // console.log(this.subscriptions)
   }
 
   ngOnDestroy() {

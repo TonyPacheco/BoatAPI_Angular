@@ -7,7 +7,6 @@ import { Alert } from '../classes/alert';
 import { AlertType } from '../enums/alert-type.enum';
 import { AlertService } from '../services/alert.service';
 import { User } from '../classes/user';
-import { getToken } from '@angular/router/src/utils/preactivation';
 
 @Injectable({
   providedIn: 'root'
@@ -49,10 +48,14 @@ export class AuthService {
         { headers: httpHeaders }
       )
       .subscribe(res => {
-        console.log(res)
         return of(true);
       });
-    console.log('Registration failed! :(');
+    const failedRegistrationAlert = new Alert(
+      'Registration failed.',
+      AlertType.Danger
+    );
+
+    this.alertService.alerts.next(failedRegistrationAlert);
     return of(false);
   }
 

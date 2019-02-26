@@ -1,14 +1,19 @@
-<div class="alert-wrapper">
-  <ul>
-    <li
-      *ngFor="let alert of alerts"
-      [type]="alert.type"
-      dismissOnTimeout="3000"
-      class="text-center"
-    >
-      {{ alert.text }}
-    </li>
-  </ul>
+<div class="container">
+  <div *ngIf="alerts.length > 0" class="alert-wrapper">
+    <div *ngFor="let alert of alerts" class="text-center">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ alert.text }}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
