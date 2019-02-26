@@ -45,7 +45,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
     CreateComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
