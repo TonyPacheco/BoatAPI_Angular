@@ -35,13 +35,7 @@ namespace api
             services.AddDbContext<ApplicationDbContext>(
                 option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddCors(o => o.AddPolicy("CORS", builder => {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader()
-                       .WithHeaders("Authorization")
-                       .AllowCredentials();
-            }));
+            services.AddCors();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -91,7 +85,12 @@ namespace api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseCors("CORS");
+            app.UseCors(options =>
+                options.AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowAnyOrigin()
+                       .AllowCredentials()
+            );
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
