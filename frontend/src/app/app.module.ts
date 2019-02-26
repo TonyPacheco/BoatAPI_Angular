@@ -25,6 +25,7 @@ import { EditComponent } from './pages/edit/edit.component';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 // pages/*/components
 import { BoatCardComponent } from './pages/boats/components/boat-card/boat-card.component';
@@ -42,7 +43,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
     BoatsComponent,
     BoatCardComponent,
     EditComponent,
-    CreateComponent
+    CreateComponent,
+    UnauthorizedComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { useHash: true }),

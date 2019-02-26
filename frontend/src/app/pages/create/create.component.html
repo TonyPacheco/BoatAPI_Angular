@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <main role="main" class="flex-shrink-0">
-  <div class="container">
+  <div class="container" *ngIf="loggedIn === true">
     <div class="row">
       <div class="col-12">
         <h1 class="display-4">Create</h1>
@@ -87,6 +87,9 @@
     <a [routerLink]="['/boats/']" class="btn btn-link col-12 mt-2 mb-3">
       Back to List
     </a>
+  </div>
+  <div class="container" *ngIf="loggedIn === false">
+    <app-unauthorized></app-unauthorized>
   </div>
 </main>
 <app-footer class="d-flex flex-column h-100"></app-footer>
