@@ -40,8 +40,7 @@ namespace api
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader()
-                       .AllowCredentials()
-                       .SetPreflightMaxAge(new TimeSpan(50000000000));
+                       .AllowCredentials();
             }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -76,8 +75,6 @@ namespace api
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SigningKey"]))
                 };
             });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,7 +90,6 @@ namespace api
                 app.UseHsts();
             }
             app.UseCors("CORS");
-
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
