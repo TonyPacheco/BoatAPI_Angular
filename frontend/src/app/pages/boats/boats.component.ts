@@ -10,17 +10,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-boats',
   templateUrl: './boats.component.html',
-  styles: [
-    `
-      :host(.footer-fixer) {
-        height: 100% !important;
-        -ms-flex-direction: column !important;
-        flex-direction: column !important;
-        display: -ms-flexbox !important;
-        display: flex !important;
-      }
-    `
-  ]
+  styleUrls: ['boats.component.css']
 })
 export class BoatsComponent implements OnInit {
   boats: object;

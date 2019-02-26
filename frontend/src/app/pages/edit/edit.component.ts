@@ -14,17 +14,7 @@ import { Boat } from 'src/app/classes/boat';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styles: [
-    `
-      :host(.footer-fixer) {
-        height: 100% !important;
-        -ms-flex-direction: column !important;
-        flex-direction: column !important;
-        display: -ms-flexbox !important;
-        display: flex !important;
-      }
-    `
-  ]
+  styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
   public editForm: FormGroup;

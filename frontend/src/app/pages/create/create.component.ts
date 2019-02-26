@@ -14,17 +14,7 @@ import { Boat } from '../../classes/boat';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styles: [
-    `
-      :host(.footer-fixer) {
-        height: 100% !important;
-        -ms-flex-direction: column !important;
-        flex-direction: column !important;
-        display: -ms-flexbox !important;
-        display: flex !important;
-      }
-    `
-  ]
+  styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
   public createForm: FormGroup;
