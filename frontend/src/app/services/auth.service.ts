@@ -72,7 +72,6 @@ export class AuthService {
       )
       .subscribe(res => {
         var jsonRes = JSON.parse(JSON.stringify(res));
-        console.log(res);
         var token: string = jsonRes.token;
         var role: string = jsonRes.role[0];
         localStorage.setItem('token', token);

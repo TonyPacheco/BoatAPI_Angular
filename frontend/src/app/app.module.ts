@@ -5,9 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 
-// guards
-import { AuthGuard } from './guards/auth.guard';
-
 // modules
 import { AppRoutingModule } from './app-routing.module';
 
@@ -55,7 +52,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent }];
     ReactiveFormsModule,
     QuillModule
   ],
-  providers: [AuthService, AlertService, AuthGuard],
+  providers: [AuthService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

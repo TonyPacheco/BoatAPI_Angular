@@ -5,7 +5,6 @@ import { RegisterComponent } from './pages/register/register.component';
 import { BoatsComponent } from './pages/boats/boats.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { CreateComponent } from './pages/create/create.component';
-import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
