@@ -27,7 +27,7 @@ namespace api.Controllers
 
         // GET: api/Boats
         [HttpGet]
-        [Authorize(Roles ="Admin, Member")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Boat>>> GetBoats()
         {
             return await _context.Boats.ToListAsync();
@@ -35,7 +35,7 @@ namespace api.Controllers
 
         // GET: api/Boats/5
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize]
         public async Task<ActionResult<Boat>> GetBoat(int id)
         {
             var boat = await _context.Boats.FindAsync(id);
@@ -81,7 +81,7 @@ namespace api.Controllers
 
         // POST: api/Boats
         [HttpPost]
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize]
         public async Task<ActionResult<Boat>> PostBoat(Boat boat)
         {
             _context.Boats.Add(boat);
