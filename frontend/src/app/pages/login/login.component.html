@@ -1,38 +1,47 @@
-<form
-  [formGroup]="loginForm"
-  class="form-signin"
-  (submit)="submit()"
-  novalidate
-  accept-charset="UTF-8"
->
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="userEmail" class="sr-only">Email address</label>
-  <input
-    type="email"
-    id="userEmail"
-    name="email"
-    class="form-control"
-    placeholder="Email address"
-    formControlName="email"
-    required
-    autofocus
-  />
-  <label for="userPassword" class="sr-only">Password</label>
-  <input
-    type="password"
-    id="userPassword"
-    name="password"
-    class="form-control"
-    placeholder="Password"
-    formControlName="password"
-    required
-  />
-  <button
-    type="submit"
-    class="btn btn-lg btn-primary btn-block"
-  >
-    Login
-  </button>
-  <a routerLink="/register">Register</a>
-  <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
-</form>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="form-wrapper col-md-6">
+    <h1 class="display-4 text-center mt-5 mb-4">
+      Login
+    </h1>
+    <form
+      [formGroup]="loginForm"
+      (submit)="submit()"
+      novalidate
+      accept-charset="UTF-8"
+    >
+      <div class="mb-3">
+        <label for="userEmail">Email address</label>
+        <input
+          type="email"
+          id="userEmail"
+          name="email"
+          class="form-control"
+          placeholder="Email address"
+          formControlName="email"
+          required
+          autofocus
+        />
+      </div>
+      <div class="mb-3">
+        <label for="userPassword">Password</label>
+        <input
+          type="password"
+          id="userPassword"
+          name="password"
+          class="form-control"
+          placeholder="Password"
+          formControlName="password"
+          required
+        />
+      </div>
+      <hr />
+      <button type="submit" class="btn btn-primary col-12 mt-3">
+        Login
+      </button>
+      <a routerLink="/register" class="btn btn-link col-12 mt-2 mb-3">
+        Register
+      </a>
+      <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+    </form>
+  </div>
+</div>
