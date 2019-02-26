@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace api.Controllers
 {
-    [EnableCors]
+    [EnableCors("CORS")]
     public class AuthController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

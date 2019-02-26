@@ -15,7 +15,7 @@ namespace api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    [EnableCors]
+    [EnableCors("CORS")]
     public class BoatsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -81,7 +81,7 @@ namespace api.Controllers
 
         // POST: api/Boats
         [HttpPost]
-        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
+        [Authorize]
         public async Task<ActionResult<Boat>> PostBoat(Boat boat)
         {
             _context.Boats.Add(boat);

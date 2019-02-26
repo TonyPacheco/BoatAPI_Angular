@@ -8,6 +8,7 @@ using api.ViewModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,12 @@ namespace api
             services.AddDbContext<ApplicationDbContext>(
                 option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddCors();
+            services.AddCors(o => o.AddPolicy("CORS", builder => {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowCredentials();
+            }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -85,12 +91,17 @@ namespace api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseCors(options =>
-                options.AllowAnyMethod()
-                       .AllowAnyHeader()
-                       .AllowAnyOrigin()
-                       .AllowCredentials()
-            );
+            app.UseCors("CORS");
+            app.Use((context, next) =>
+            {
+                if (context.Request.Headers.Any(k => k.Key.Contains("Origin")) && context.Request.Method == "OPTIONS")
+                {
+                    context.Response.StatusCode = 200;
+                    return context.Response.WriteAsync("handled");
+                }
+
+                return next.Invoke();
+            });
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
