@@ -86,7 +86,6 @@ namespace api.Controllers
         {
             _context.Boats.Add(boat);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetBoat", new { id = boat.BoatId }, boat);
         }
 
@@ -107,6 +106,11 @@ namespace api.Controllers
             return boat;
         }
 
+        [HttpOptions]
+        public async Task<ActionResult> Options()
+        {
+            return new ContentResult();
+        }
 
         private bool BoatExists(int id)
         {
