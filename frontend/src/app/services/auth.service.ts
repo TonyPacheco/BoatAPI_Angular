@@ -28,7 +28,9 @@ export class AuthService {
     firstName: string,
     lastName: string,
     email: string,
-    password: string
+    password: string,
+    country: string,
+    mobileNumber: string
   ): Observable<boolean> {
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -40,11 +42,14 @@ export class AuthService {
           Email: email,
           Password: password,
           First: firstName,
-          Last: lastName
+          Last: lastName,
+          Country: country,
+          Phone: mobileNumber
         },
         { headers: httpHeaders }
       )
       .subscribe(res => {
+        console.log(res)
         return of(true);
       });
     console.log('Registration failed! :(');
@@ -69,7 +74,7 @@ export class AuthService {
         var jsonRes = JSON.parse(JSON.stringify(res));
         console.log(res);
         var token: string = jsonRes.token;
-        var role : string = jsonRes.role[0];
+        var role: string = jsonRes.role[0];
         localStorage.setItem('token', token);
         localStorage.setItem('userType', role);
         this.router.navigate(['/boats']);
@@ -95,6 +100,6 @@ export class AuthService {
 
   public isAdmin(): boolean {
     // 1 if admin - 2 if member
-    return localStorage.getItem('userType') == "Admin";
+    return localStorage.getItem('userType') == 'Admin';
   }
 }

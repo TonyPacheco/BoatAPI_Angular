@@ -33,18 +33,35 @@ export class RegisterComponent implements OnInit, OnDestroy {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(3)]]
+      password: ['', [Validators.required, Validators.minLength(3)]],
+      country: ['', Validators.required],
+      mobileNumber: ['', Validators.required]
     });
   }
 
   public submit(): void {
     if (this.registerForm.valid) {
       // TODO call authservice
-      const { firstName, lastName, email, password } = this.registerForm.value;
+      const {
+        firstName,
+        lastName,
+        email,
+        password,
+        username,
+        country,
+        mobileNumber
+      } = this.registerForm.value;
 
       this.subscriptions.push(
         this.auth
-          .register(firstName, lastName, email, password)
+          .register(
+            firstName,
+            lastName,
+            email,
+            password,
+            country,
+            mobileNumber
+          )
           .subscribe(success => {
             if (success) {
               this.router.navigate(['/boats']);
@@ -53,7 +70,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       );
     } else {
       const failedRegisterAlert = new Alert(
-        'Invalid name, email, and password',
+        'Invalid data.',
         AlertType.Danger
       );
       this.alertService.alerts.next(failedRegisterAlert);
