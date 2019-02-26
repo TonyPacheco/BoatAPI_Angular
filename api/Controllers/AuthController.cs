@@ -36,6 +36,8 @@ namespace api.Controllers
                 UserName = model.Email,
                 FirstName = model.First,
                 LastName = model.Last,
+                Country = model.Country,
+                PhoneNumber = model.Phone,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
 

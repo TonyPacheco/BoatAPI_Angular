@@ -92,16 +92,7 @@ namespace api
                 app.UseHsts();
             }
             app.UseCors("CORS");
-            app.Use((context, next) =>
-            {
-                if (context.Request.Headers.Any(k => k.Key.Contains("Origin")) && context.Request.Method == "OPTIONS")
-                {
-                    context.Response.StatusCode = 200;
-                    return context.Response.WriteAsync("handled");
-                }
 
-                return next.Invoke();
-            });
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
