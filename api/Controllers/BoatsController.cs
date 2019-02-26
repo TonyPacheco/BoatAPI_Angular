@@ -90,12 +90,6 @@ namespace api.Controllers
             return CreatedAtAction("GetBoat", new { id = boat.BoatId }, boat);
         }
 
-        [HttpOptions]
-        public async Task<ActionResult<bool>> Options()
-        {
-            return Accepted();
-        }
-
         // DELETE: api/Boats/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
