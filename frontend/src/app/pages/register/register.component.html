@@ -1,0 +1,77 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="form-wrapper col-md-6">
+    <h1 class="display-4 text-center mt-5 mb-4">
+      Register
+    </h1>
+    <form [formGroup]="registerForm" (submit)="submit()" novalidate>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="first-name-input">First name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="first-name-input"
+            placeholder="Jane"
+            formControlName="firstName"
+          />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="last-name-input">Last name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="last-name-input"
+            placeholder="Doe"
+            formControlName="lastName"
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email-input">E-mail</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email-input"
+          placeholder="your_email@example.com"
+          formControlName="email"
+        />
+        <small class="text-muted">Your E-mail will be your username.</small>
+      </div>
+      <div class="mb-3">
+        <label for="password-input">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password-input"
+          placeholder="your_password"
+          formControlName="password"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="country-input">Country</label>
+        <input
+          type="text"
+          class="form-control"
+          id="country-input"
+          placeholder="Country"
+          formControlName="country"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="mobile-number-input">Mobile Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="mobile-number-input"
+          placeholder="Mobile Number"
+          formControlName="mobileNumber"
+        />
+      </div>
+      <hr />
+      <button type="submit" class="btn btn-primary col-12 mt-3">
+        Submit
+      </button>
+    </form>
+    <a routerLink="/login" class="btn btn-link col-12 mt-2 mb-3">Login</a>
+  </div>
+</div>

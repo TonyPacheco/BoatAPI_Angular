@@ -1,0 +1,7 @@
+:host(.footer-fixer) {
+  height: 100% !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}

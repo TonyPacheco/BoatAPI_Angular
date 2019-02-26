@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<main role="main" class="flex-shrink-0">
+  <div class="container" *ngIf="loggedIn == true">
+    <div class="card-columns">
+      <app-boat-card *ngFor="let boat of boats" [boat]="boat"> </app-boat-card>
+    </div>
+  </div>
+  <div class="container" *ngIf="loggedIn === false">
+    <app-unauthorized></app-unauthorized>
+  </div>
+</main>
+<app-footer class="d-flex flex-column h-100"></app-footer>

@@ -1,10 +1,10 @@
 # A1
 
-Tony Pacheco - A00987817 - tonypacheco.cillis@gmail.com
+Tony Pacheco - A00987817 - tonypacheco.cillis@gmail.com  
 Amy Hong     - A01011697 - jhong81@my.bcit.ca
 
 WHAT WE HAVE NOT COMPLETED
 
-URL OF SITES ON AZURE
+API Backend https://boatapi.azurewebsites.net/ 
 
-ANY MAJOR CHALLENGES
+Had a lot of trouble using SQLite on an Azure App Service, so we switched to an Azure hosted MSSQL database.
