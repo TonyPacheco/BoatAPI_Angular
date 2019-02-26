@@ -36,7 +36,7 @@ export class CreateComponent implements OnInit {
     make: '',
     picture: ''
   };
-  private loggedIn: boolean;
+  loggedIn: boolean;
   private httpHeaders: HttpHeaders;
 
   constructor(

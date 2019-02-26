@@ -36,7 +36,7 @@ export class EditComponent implements OnInit {
     make: '',
     picture: ''
   };
-  private loggedIn: boolean;
+  loggedIn: boolean;
   private id: string;
   private httpHeaders: HttpHeaders;
 
