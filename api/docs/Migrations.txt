@@ -1,0 +1,3 @@
+dotnet ef migrations add initNewDb
+dotnet ef migrations ass autogenid
+dotnet ef database update
