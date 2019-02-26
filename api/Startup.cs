@@ -40,7 +40,8 @@ namespace api
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader()
-                       .AllowCredentials();
+                       .AllowCredentials()
+                       .SetPreflightMaxAge(new TimeSpan(5000));
             }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
