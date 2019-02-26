@@ -1,4 +1,5 @@
 ﻿using api.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace api.Controllers
 {
+    [EnableCors("CORS")]
     public class AuthController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -32,9 +34,15 @@ namespace api.Controllers
             {
                 Email = model.Email,
                 UserName = model.Email,
+                FirstName = model.First,
+                LastName = model.Last,
+                Country = model.Country,
+                MobileNumber = model.Phone,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
+
             var result = await _userManager.CreateAsync(user, model.Password);
+            
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "Member");
@@ -47,29 +55,31 @@ namespace api.Controllers
         public async Task<ActionResult> Login([FromBody] LoginViewModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
+
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var claim = new[] {
-        new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
-      };
-                var signinKey = new SymmetricSecurityKey(
-                  Encoding.UTF8.GetBytes(_configuration["Jwt:SigningKey"]));
-
-                int expiryInMinutes = Convert.ToInt32(_configuration["Jwt:ExpiryInMinutes"]);
-
-                var token = new JwtSecurityToken(
-                  issuer: _configuration["Jwt:Site"],
-                  audience: _configuration["Jwt:Site"],
-                  expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
-                  signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)
-                );
-
-                return Ok(
-                  new
-                  {
-                      token = new JwtSecurityTokenHandler().WriteToken(token),
-                      expiration = token.ValidTo
-                  });
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new[]
+                    {
+                    new Claim(ClaimTypes.Role, _userManager.GetRolesAsync(user).Result[0]),
+                    new Claim(ClaimTypes.NameIdentifier, user.UserName)
+                }),
+                    Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(_configuration["Jwt:ExpiryInMinutes"])),
+                    Issuer = _configuration["Jwt:Site"],
+                    Audience = _configuration["Jwt:Site"],
+                    SigningCredentials = new SigningCredentials(
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SigningKey"])), SecurityAlgorithms.HmacSha256)
+                };
+                var userRole = await _userManager.GetRolesAsync(user);
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                return Ok(new
+                {
+                    token = tokenHandler.WriteToken(token),
+                    expiration = token.ValidTo,
+                    role = userRole
+                });
             }
             return Unauthorized();
         }

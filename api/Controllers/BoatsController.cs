@@ -8,12 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using api.Data;
 using api.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    [EnableCors("CORS")]
     public class BoatsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -25,6 +27,7 @@ namespace api.Controllers
 
         // GET: api/Boats
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Boat>>> GetBoats()
         {
             return await _context.Boats.ToListAsync();
@@ -32,6 +35,7 @@ namespace api.Controllers
 
         // GET: api/Boats/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Boat>> GetBoat(int id)
         {
             var boat = await _context.Boats.FindAsync(id);
@@ -46,6 +50,7 @@ namespace api.Controllers
 
         // PUT: api/Boats/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutBoat(int id, Boat boat)
         {
             if (id != boat.BoatId)
@@ -76,16 +81,18 @@ namespace api.Controllers
 
         // POST: api/Boats
         [HttpPost]
+        [Authorize]
+        [EnableCors("CORS")]
         public async Task<ActionResult<Boat>> PostBoat(Boat boat)
         {
             _context.Boats.Add(boat);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetBoat", new { id = boat.BoatId }, boat);
         }
 
         // DELETE: api/Boats/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Boat>> DeleteBoat(int id)
         {
             var boat = await _context.Boats.FindAsync(id);
@@ -98,6 +105,12 @@ namespace api.Controllers
             await _context.SaveChangesAsync();
 
             return boat;
+        }
+
+        [HttpOptions]
+        public async Task<ActionResult> Options()
+        {
+            return new ContentResult();
         }
 
         private bool BoatExists(int id)

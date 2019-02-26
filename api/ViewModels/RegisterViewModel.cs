@@ -14,6 +14,18 @@ namespace api.ViewModels
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public string First { get; set; }
+
+        [Required]
+        public string Last { get; set; }
+
+        public string Country { get; set; }
+
+        public string Phone { get; set; }
+
+
     }
 
 }
