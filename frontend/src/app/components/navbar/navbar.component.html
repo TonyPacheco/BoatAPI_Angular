@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
-  <span class="navbar-brand">A1</span>
+  <span class="navbar-brand">
+    <a routerLink="/boats" routerLinkActive="active">A1</a>
+  </span>
   <button
     class="navbar-toggler"
     type="button"
@@ -16,6 +18,11 @@
       <li class="nav-item">
         <a routerLink="/boats" routerLinkActive="active" class="nav-link"
           >Boats</a
+        >
+      </li>
+      <li *ngIf="isAdmin" class="nav-item">
+        <a routerLink="/create" routerLinkActive="active" class="nav-link"
+          >Create New Boat</a
         >
       </li>
     </ul>

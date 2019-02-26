@@ -7,13 +7,15 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  constructor(private auth: AuthService) {}
 
-  constructor(private auth:AuthService){
+  public isAdmin: boolean = false;
 
+  ngOnInit() {
+    this.isAdmin = this.auth.isAdmin();
   }
-
-  public logout(){
+  
+  public logout() {
     this.auth.logout();
   }
-
 }
