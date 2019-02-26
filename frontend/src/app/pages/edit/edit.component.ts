@@ -29,7 +29,7 @@ import { Boat } from '../../classes/boat';
 export class EditComponent implements OnInit {
   public editForm: FormGroup;
   private boatData: Boat = {
-    boatId: '',
+    boatId: -1,
     boatName: '',
     description: '',
     lengthInFeet: '',

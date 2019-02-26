@@ -1,5 +1,5 @@
 export class Boat {
-  boatId: string;
+  boatId: number;
   boatName: string;
   description: string;
   lengthInFeet: string;
@@ -7,7 +7,7 @@ export class Boat {
   picture: string;
 
   constructor(
-    boatId: string,
+    boatId: number,
     boatName: string,
     description: string,
     lengthInFeet: string,
