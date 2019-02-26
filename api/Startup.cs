@@ -44,10 +44,6 @@ namespace api
                        .AllowCredentials();
             }));
 
-            services.Configure<MvcOptions>(options => {
-                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAnyOrigin"));
-            });
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddIdentity<ApplicationUser, IdentityRole>(
