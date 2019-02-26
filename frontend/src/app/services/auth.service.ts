@@ -50,12 +50,6 @@ export class AuthService {
       .subscribe(res => {
         return of(true);
       });
-    const failedRegistrationAlert = new Alert(
-      'Registration failed.',
-      AlertType.Danger
-    );
-
-    this.alertService.alerts.next(failedRegistrationAlert);
     return of(false);
   }
 

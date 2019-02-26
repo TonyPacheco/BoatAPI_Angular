@@ -41,38 +41,24 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public submit(): void {
     if (this.registerForm.valid) {
-      // TODO call authservice
       const {
         firstName,
         lastName,
         email,
         password,
-        username,
         country,
         mobileNumber
       } = this.registerForm.value;
 
       this.subscriptions.push(
         this.auth
-          .register(
-            firstName,
-            lastName,
-            email,
-            password,
-            country,
-            mobileNumber
-          )
+          .register(firstName, lastName, email, password, country, mobileNumber)
           .subscribe(success => {
-            if (success) {
-              this.router.navigate(['/boats']);
-            }
+            this.router.navigate(['/login']);
           })
       );
     } else {
-      const failedRegisterAlert = new Alert(
-        'Invalid data.',
-        AlertType.Danger
-      );
+      const failedRegisterAlert = new Alert('Invalid data.', AlertType.Danger);
       this.alertService.alerts.next(failedRegisterAlert);
     }
   }
