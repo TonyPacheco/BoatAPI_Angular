@@ -10,8 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup;
@@ -41,24 +40,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public submit(): void {
     if (this.loginForm.valid) {
-      // TODO call authservice
       const { email, password } = this.loginForm.value;
 
       this.subscriptions.push(
         this.auth.login(email, password).subscribe(success => {
-          if (success) {
+          if (this.auth.getToken()) {
             this.router.navigate(['/boats']);
-            // this.router.navigateByUrl(this.returnUrl);
           }
         })
       );
-    } else {
-      const failedLoginAlert = new Alert(
-        'Your email or password is invalid.',
-        AlertType.Danger
-      );
-
-      this.alertService.alerts.next(failedLoginAlert);
     }
   }
 
