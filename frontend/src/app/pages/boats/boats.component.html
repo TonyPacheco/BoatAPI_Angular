@@ -1,14 +1,8 @@
 <app-navbar></app-navbar>
 <main role="main" class="flex-shrink-0">
   <div class="container" *ngIf="loggedIn == true">
-    <div class="row">
-      <div class="card-columns">
-        <app-boat-card
-          *ngFor="let boat of boats"
-          [boat]="boat"
-          class="col-sm-12 col-md-4"
-        ></app-boat-card>
-      </div>
+    <div class="card-columns">
+      <app-boat-card *ngFor="let boat of boats" [boat]="boat"> </app-boat-card>
     </div>
   </div>
   <div class="container" *ngIf="loggedIn === false">
