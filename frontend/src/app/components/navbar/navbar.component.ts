@@ -9,9 +9,11 @@ import { AuthService } from '../../services/auth.service';
 export class NavbarComponent {
   constructor(private auth: AuthService) {}
 
-  public isAdmin: boolean = false;
+  private loggedIn: boolean;
+  private isAdmin: boolean = false;
 
   ngOnInit() {
+    this.loggedIn = this.auth.loggedIn();
     this.isAdmin = this.auth.isAdmin();
   }
   

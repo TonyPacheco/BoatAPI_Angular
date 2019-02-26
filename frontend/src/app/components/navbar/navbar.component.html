@@ -15,7 +15,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li *ngIf="loggedIn === true" class="nav-item">
         <a routerLink="/boats" routerLinkActive="active" class="nav-link"
           >Boats</a
         >
@@ -26,8 +26,11 @@
         >
       </li>
     </ul>
-    <span class="mt-2 mt-md-0">
+    <span class="mt-2 mt-md-0" *ngIf="loggedIn === true">
       <a (click)="logout()">Logout</a>
+    </span>
+    <span class="mt-2 mt-md-0" *ngIf="loggedIn === false">
+      <a routerLink="/login" class="nav-link pl-0">Login</a>
     </span>
   </div>
 </nav>
