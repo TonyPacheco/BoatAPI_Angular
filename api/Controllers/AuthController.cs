@@ -37,7 +37,7 @@ namespace api.Controllers
                 FirstName = model.First,
                 LastName = model.Last,
                 Country = model.Country,
-                PhoneNumber = model.Phone,
+                MobileNumber = model.Phone,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
 
