@@ -82,6 +82,7 @@ namespace api.Controllers
         // POST: api/Boats
         [HttpPost]
         [Authorize]
+        [EnableCors("CORS")]
         public async Task<ActionResult<Boat>> PostBoat(Boat boat)
         {
             _context.Boats.Add(boat);
